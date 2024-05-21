@@ -1,0 +1,6 @@
+#Ignore large files
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_away.pkl
+
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_coumns.pkl
+
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_home.pkl
