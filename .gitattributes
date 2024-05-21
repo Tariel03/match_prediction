@@ -1,2 +1,5 @@
 myapp1/model_home.pkl filter=lfs diff=lfs merge=lfs -text
 myapp1/model_away.pkl filter=lfs diff=lfs merge=lfs -text
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_home.pkl filter=lfs diff=lfs merge=lfs -text
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_columns.pkl filter=lfs diff=lfs merge=lfs -text
+/Users/tarielakmatov/Desktop/match_predict/myapp1/model_away.pkl filter=lfs diff=lfs merge=lfs -text
