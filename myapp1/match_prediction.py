@@ -16,8 +16,10 @@ model_columns = joblib.load(settings.MODEL_COLUMNS_PATH)
 
 df = pd.read_csv(settings.RESULTS_CSV_PATH)
 
+
 def get_match_statistics(home_team, away_team):
-    matches = df[((df['home_team'] == home_team) & (df['away_team'] == away_team)) | ((df['home_team'] == away_team) & (df['away_team'] == home_team))]
+    matches = df[((df['home_team'] == home_team) & (df['away_team'] == away_team)) | (
+                (df['home_team'] == away_team) & (df['away_team'] == home_team))]
 
     if len(matches) == 0:
         home_team_stats = df[df['home_team'] == home_team]
@@ -35,22 +37,25 @@ def get_match_statistics(home_team, away_team):
 
     return match_stats
 
+
 def visualize_statistics(home_team, away_team):
     match_stats = get_match_statistics(home_team, away_team)
 
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=['Home Team Wins', 'Away Team Wins', 'Draws'], y=[match_stats['home_team_wins'], match_stats['away_team_wins'], match_stats['draws']])
+    sns.barplot(x=['Home Team Wins', 'Away Team Wins', 'Draws'],
+                y=[match_stats['home_team_wins'], match_stats['away_team_wins'], match_stats['draws']])
     plt.title('Match Outcomes')
     plt.xlabel('Outcome')
     plt.ylabel('Number of Matches')
 
     # Save plot to a file
     plot_filename = f'{home_team}_vs_{away_team}.png'
-    plot_filepath = os.path.join(plot_filename)
+    plot_filepath = os.path.join("static/" + plot_filename)
     plt.savefig(plot_filepath)
     plt.close()
 
     return plot_filename
+
 
 def predict_scores(home_team, away_team):
     input_data = pd.DataFrame([[0] * len(model_columns)], columns=model_columns)
@@ -64,7 +69,7 @@ def predict_scores(home_team, away_team):
 
     return predicted_home_score, predicted_away_score, plot_filename
 
+
 def match(home_team, away_team):
     predicted_home_score, predicted_away_score, plot_filename = predict_scores(home_team, away_team)
     return f"Predicted score between {home_team} and {away_team}: {predicted_home_score} - {predicted_away_score}", plot_filename
-

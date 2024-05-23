@@ -4,10 +4,13 @@ from myapp1.models import Worker
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignupForm, LoginForm
 from .match_prediction import match, visualize_statistics, get_match_statistics
+from .stats import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    tours = tournaments()
+    teams = get_most_successful_teams()
+    return render(request, 'index.html', {"tournaments": tours, "teams": teams})
 
 
 # signup page

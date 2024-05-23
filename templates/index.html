@@ -24,6 +24,26 @@
         .btn {
             margin: 5px;
         }
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .team-item {
+            flex: 1 1 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+        .team-item span {
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -53,9 +73,38 @@
 
     <!-- Main Content -->
     <div class="container">
-        <h1>Welcome!</h1>
-        <p>This is your welcome page. Enjoy browsing!</p>
+        <h1>Welcome to Football Prediction!</h1>
+        <p>We are thrilled to have you here. Our platform provides you with the latest insights and predictions for upcoming football matches. Whether you are a seasoned analyst or a casual fan, our tools are designed to help you make informed decisions.</p>
+        <p>Enjoy browsing through our site and stay ahead of the game with our comprehensive predictions and analysis. Let's make this season unforgettable!</p>
     </div>
+
+    <!-- Teams List -->
+    <div class="container">
+        <h2 class="card-header">Most Successful Teams</h2>
+        <div class="team-list">
+            {% for key, value in teams.items %}
+            <div class="team-item">
+                <span>Team: {{ key }}</span>
+                <span class="badge badge-primary">{{ value }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Tournaments List -->
+    <div class="container">
+        <h2 class="card-header">Most Popular Tournaments</h2>
+        <div class="team-list">
+            {% for key, value in tournaments.items %}
+            <div class="team-item">
+                <span>Tournament: {{ key }}</span>
+                <span class="badge badge-primary">{{ value }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <img src="/static/Argentina_vs_France.png" alt="HUi">
 
     <!-- Add Bootstrap JS and dependencies (optional but recommended) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
