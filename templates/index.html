@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <!-- Add Bootstrap CSS for styling -->
+
+    <!-- Bootstrap CSS for styling -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+
+     <style>
         body {
             padding-top: 50px;
         }
@@ -44,32 +46,56 @@
         .team-item span {
             font-size: 1.2rem;
         }
+        .photo-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .photo-item {
+            flex: 1 1 calc(33.333% - 30px); /* Adjust the width and margin */
+            margin: 10px;
+        }
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
     </style>
 </head>
-<body>
+
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">MySite</a>
+        <a class="navbar-brand" href="/match_prediction">Match prediction</a>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <span class="navbar-text">Hello, {{ request.user.username }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a>
-                    </li>
+                <li class="nav-item">
+                    <span class="navbar-text">Hello, {{ request.user.username }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a>
+                </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-success" href="{% url 'signup' %}">Signup</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-success" href="{% url 'signup' %}">Signup</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
+
+
 
     <!-- Main Content -->
     <div class="container">
@@ -78,6 +104,15 @@
         <p>Enjoy browsing through our site and stay ahead of the game with our comprehensive predictions and analysis. Let's make this season unforgettable!</p>
     </div>
 
+   <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/ron.jpeg" style = "height: 800px" alt="HU">
+        </div>
+
+       <div class="photo-item">
+            <img src="/static/messi.jpeg" style = "height: 800px" alt="HU">
+        </div>
+    </div>
     <!-- Teams List -->
     <div class="container">
         <h2 class="card-header">Most Successful Teams</h2>
@@ -90,6 +125,9 @@
             {% endfor %}
         </div>
     </div>
+
+        <!-- Teams List -->
+
 
     <!-- Tournaments List -->
     <div class="container">
@@ -104,13 +142,45 @@
         </div>
     </div>
 
-    <img src="/static/Argentina_vs_France.png" alt="HUi">
-    <img src="/static/img.png" alt="HU">
+    <!-- Static Images -->
+    <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/img.png" alt="HU">
+        </div>
+
+    </div>
+     <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/img_1.png" alt="HU">
+        </div>
+
+    </div>
+         <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/img_2.png" alt="HU">
+        </div>
+
+    </div>
+      <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/img_3.png" alt="HU">
+        </div>
+
+    </div>
+
+      <div class="container photo-row">
+        <div class="photo-item">
+            <img src="/static/img_4.png" alt="HU">
+        </div>
+    </div>
+
+   <footer>
+        <p>&copy; 2024 Football Prediction. All rights reserved.</p>
+        <p><a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
 
 
-
-
-    <!-- Add Bootstrap JS and dependencies (optional but recommended) -->
+    <!-- Bootstrap JS and dependencies (optional but recommended) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

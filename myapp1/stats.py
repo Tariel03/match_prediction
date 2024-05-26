@@ -13,6 +13,8 @@ def get_most_successful_teams():
     return team_results.head(15)
 
 
+
+
 def tournaments():
     tournament_counts = df['tournament'].value_counts()
     print("Самые популярные турниры:")

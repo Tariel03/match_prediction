@@ -35,6 +35,9 @@
             margin-top: 10px;
             text-align: center;
         }
+        .form-check {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -43,6 +46,14 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">I understand that this project is created only for educational and personal reasons, not to be sold.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="age" required>
+                <label class="form-check-label" for="age">I confirm that I am over 18 years old.</label>
+            </div>
             <button type="submit" class="btn btn-primary">Signup</button>
             <a href="{% url 'login' %}" class="login-link">Already have an account?</a>
         </form>
