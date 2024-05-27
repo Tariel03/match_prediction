@@ -2,12 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match Prediction</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/static/background6.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative; /* Добавлено */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: neon 1.5s infinite alternate;
+        }
+        @keyframes neon {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 55px #00ff00, 0 0 70px #00ff00; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00; }
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #32CD32;
+            border-color: #32CD32;
+            transition: background-color 0.3s, border-color 0.3s;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(50, 205, 50, 0.5);
+        }
+        .btn-primary:hover {
+            background-color: #228B22;
+            border-color: #228B22;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .card-header {
+            background-color: #32CD32;
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+        }
+        .list-group-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+        }
+        .badge-primary {
+            background-color: #32CD32;
+        }
+        .bg-glow {
+            animation: glow 5s infinite;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #32CD32; }
+            50% { box-shadow: 0 0 20px #32CD32; }
+            100% { box-shadow: 0 0 10px #32CD32; }
+        }
+         .football {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-image: url('https://img.icons8.com/color/48/000000/football2.png');
+        background-size: cover;
+        animation: moveFootball 5s linear infinite alternate; /* Изменено */
+        z-index: 1;
+    }
+
+    .football:nth-child(2) {
+        animation-delay: 1s; /* Добавляем задержку для второго мяча */
+    }
+
+    .football:nth-child(3) {
+        animation-delay: 2s; /* Добавляем задержку для третьего мяча */
+    }
+
+        .football:nth-child(4) {
+            animation-delay: 3s; /* Добавляем задержку для четвертого мяча */
+        }
+
+        .football:nth-child(5) {
+            animation-delay: 4s; /* Добавляем задержку для пятого мяча */
+        }
+
+        .football:nth-child(6) {
+            animation-delay: 5s; /* Добавляем задержку для шестого мяча */
+        }@keyframes moveFootball {
+    0% { left: -40px; top: 50%; transform: rotate(0deg); } /* Изменено */
+    25% { left: calc(100% - 40px); top: 0%; transform: rotate(90deg); } /* Добавлено */
+    50% { left: calc(100% - 40px); top: calc(100% - 40px); transform: rotate(180deg); } /* Добавлено */
+    75% { left: 0%; top: calc(100% - 40px); transform: rotate(270deg); } /* Добавлено */
+    100% { left: -40px; top: 50%; transform: rotate(360deg); } /* Изменено */
+}
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Match Prediction</h1>
+<div class="container bg-glow">
+    <h1 class="bg-glow">Match Prediction</h1>
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -18,7 +131,7 @@
             <label for="away_team">Away Team:</label>
             <input type="text" id="away_team" name="away_team" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Predict</button>
+        <button type="submit" class="btn btn-primary btn-block">Predict</button>
     </form>
     {% if prediction %}
     <div class="alert alert-info mt-3">
@@ -26,7 +139,7 @@
     </div>
     {% endif %}
     {% if stats %}
-    <div class="card mt-3">
+    <div class="card">
         <div class="card-header">
             Match Statistics
         </div>
@@ -40,13 +153,18 @@
         </ul>
     </div>
     {% endif %}
-
     {% if plot %}
     <div class="mt-3">
         <img src="/static/{{ plot }}" alt="Match Prediction Plot" class="img-fluid">
     </div>
     {% endif %}
 </div>
-
+<!-- Анимированные мячи -->
+<div class="football"></div>
+<div class="football"></div> <!-- Второй мяч -->
+<div class="football"></div> <!-- Третий мяч -->
+<div class="football"></div>
+<div class="football"></div> <!-- Второй мяч -->
+<div class="football"></div>
 </body>
 </html>
